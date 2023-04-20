@@ -3,7 +3,7 @@ name: Github-Actions-Examples
 on: [push]
 
 jobs: 
-  run-github-actions(job1):
+  run-github-actions-job1:
     runs-on: ubuntu-latest
     steps:
       - name: Simple Js Action
