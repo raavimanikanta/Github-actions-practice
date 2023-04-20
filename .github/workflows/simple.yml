@@ -8,7 +8,7 @@ jobs:
     # each step mentioned will be like array of element
     steps:
       - name: echo a string 
-        run: echo "hello-world"
+        run: echo "hello-world this is my first pipeline in github-actions"
       - name: multipleline script 
         run: |
           node -v
