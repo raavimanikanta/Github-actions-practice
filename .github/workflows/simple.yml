@@ -3,7 +3,7 @@ name: Shell Commands
 on: [push]
 
 jobs:
-  run-shell-command:  # name of the job 
+  run-shell-command-job1:  # name of the job 
     runs-on: ubuntu-latest
     # each step mentioned will be like array of element
     steps:
@@ -18,3 +18,12 @@ jobs:
           import platform 
           print(platform.processor())
         shell: python
+
+  run-windows-commands-job2:
+    runs-on: windows-latest
+    steps:
+      - name: Directory Powershell
+        run: Get-Location
+      - name: Directory Bash
+        run: pwd
+        shell: bash
