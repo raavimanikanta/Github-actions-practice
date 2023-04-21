@@ -1,0 +1,35 @@
+name: Github-Action-Terraform-Automation
+
+on: 
+  workflow_dispatch:
+
+jobs:
+    Terraform:
+       runs-on: ubuntu-latest
+       env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+          # PAT_TOKEN: ${{secrets.PAT_TOKEN}}
+       steps:
+         - name: Setup Terraform
+           uses: hashicorp/setup-terraform@v1
+
+         - name: Setup git global config
+           run: git config --global url."https://oauth2:${{secrets.PAT_TOKEN}}@github.com".insteadOf https://github.com 
+
+         - name: Configure AWS Credentials
+           uses: aws-actions/configure-aws-credentials@v1
+           with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: us-east-2
+
+         - name: Terraform init
+           run: terraform init -reconfigure -input=false
+
+         - name: Terraform validation
+           run: terraform validate
+
+         - name: Terraform apply
+           run: terraform apply -auto-approve -input=false
