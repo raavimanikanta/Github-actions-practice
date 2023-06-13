@@ -1,14 +1,12 @@
-name: Github-Actions-Examples
+name: My-First-Workflow
 
-on: [push]
+on: workflow_dispatch
 
-jobs: 
+jobs:  
   run-github-actions-job1:
     runs-on: ubuntu-latest
     steps:
-      - name: Simple Js Action
-        uses: raavimanikanta/Github-actions-practice@v1
-        with:
-          who-to-greet: manikanta
-      - name: Log Greeting Time
-        run: echo "${{steps.greet.outputs.time}}"
+      - name: first-step
+        run: echo "hello-world"
+      - name: second-step
+        run: echo "iam learning github-actions"
