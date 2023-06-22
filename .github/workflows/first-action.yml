@@ -2,6 +2,9 @@ name: My-First-Workflow
 
 on: workflow_dispatch
 
+env:
+  greet: "first time"
+
 jobs:  
   run-github-actions-job1:
     runs-on: ubuntu-latest
@@ -9,4 +12,4 @@ jobs:
       - name: first-step
         run: echo "hello-world"
       - name: second-step
-        run: echo "iam learning github-actions"
+        run: echo "iam learning github-actions $greet"
