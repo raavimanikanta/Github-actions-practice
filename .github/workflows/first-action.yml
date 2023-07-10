@@ -1,22 +1,24 @@
 name: My-First-Workflow
 
 on:
-  workflow_dispatch:
-    inputs:
-      infra_select:
-        description: 'prod or non-prod'
-        required: true
+   workflow_dispatch:
+     inputs:
+       infra_env:
+          description: 'Environment Name("prod" or "nonprod")'
+          required: true
+  
 
-env:
-  greet: "first time"
+# env:
+#   greet: "first time"
 
 jobs:  
   run-github-actions-job1:
     runs-on: ubuntu-latest
     steps:
       - name: first-step
-        if: ${{ github.event.inputs.infra_select =="nonprod"}}
+        if: ${{ github.event.inputs.infra_env =="nonprod"}}
         run: echo "hello-world"
+        
       - name: second-step
-        if: ${{ github.event.inputs.infra_select =="prod"}}
-        run: echo "iam learning github-actions $greet"
+        if: ${{ github.event.inputs.infra_env =="prod"}}
+        run: echo "iam learning github-actions"
