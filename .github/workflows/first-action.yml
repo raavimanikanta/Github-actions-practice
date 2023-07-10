@@ -1,11 +1,11 @@
 name: My-First-Workflow
 
-on: 
+on:
   workflow_dispatch:
-   inputs:
-     infra_select:
-       description: 'prod or non-prod'
-       required: true
+    inputs:
+      infra_select:
+        description: 'prod or non-prod'
+        required: true
 
 env:
   greet: "first time"
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: first-step
-        if: ${{github.event.inputs=="non-prod"}}
+        if: ${{github.event.inputs=="nonprod"}}
         run: echo "hello-world"
       - name: second-step
         if: ${{github.event.inputs=="prod"}}
