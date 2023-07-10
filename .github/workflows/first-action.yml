@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: first-step
+        if: ${{github.event.inputs=="non-prod"}}
         run: echo "hello-world"
       - name: second-step
+        if: ${{github.event.inputs=="prod"}}
         run: echo "iam learning github-actions $greet"
