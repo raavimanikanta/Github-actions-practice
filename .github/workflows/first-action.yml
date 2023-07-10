@@ -1,6 +1,11 @@
 name: My-First-Workflow
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+   inputs:
+     infra_select:
+       description: 'prod or non-prod'
+       required: true
 
 env:
   greet: "first time"
