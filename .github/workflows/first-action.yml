@@ -16,9 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: first-step
-        if: ${{ github.event.inputs.infra_env == "nonprod" }}
+        if: ${{ github.event.inputs.infra_env == 'nonprod' }}
         run: echo "hello-world"
         
       - name: second-step
-        if: ${{ github.event.inputs.infra_env == "prod" }}
+        if: ${{ github.event.inputs.infra_env == 'prod' }}
         run: echo "iam learning github-actions"
