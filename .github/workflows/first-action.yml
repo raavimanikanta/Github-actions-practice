@@ -11,14 +11,20 @@ on:
 # env:
 #   greet: "first time"
 
-jobs:  
-  run-github-actions-job1:
-    runs-on: ubuntu-latest
-    steps:
-      - name: first-step
-        if: ${{ github.event.inputs.infra_env == 'nonprod' }}
-        run: echo "hello-world"
+jobs:
+  # tfdestroy:
+  #   name: 'Terraform Destroy'
+  #   runs-on: ubuntu-latest
+    run-github-actions-job1:
+        name: 'server-name'
+        runs-on: ubuntu-latest
+        steps:
+         - name: 'Checkout'
+           uses: actions/checkout@v1
+         - name: 'first-step'
+           if: ${{ github.event.inputs.infra_env == 'nonprod' }}
+           run: echo "hello-world"
         
-      - name: second-step
-        if: ${{ github.event.inputs.infra_env == 'prod' }}
-        run: echo "iam learning github-actions"
+         - name: 'second-step'
+           if: ${{ github.event.inputs.infra_env == 'prod' }}
+           run: echo "iam learning github-actions"
