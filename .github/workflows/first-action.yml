@@ -28,3 +28,14 @@ jobs:
          - name: 'second-step'
            if: ${{ github.event.inputs.infra_env == 'prod' }}
            run: echo "iam learning github-actions"
+   
+         - name: Get Previous Pipeline Status
+           id: get_status
+           run: |
+             # Fetch the last completed run of the same workflow
+             PREVIOUS_RUN=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs?event=workflow_run&status=completed" | jq '.workflow_runs[1]')
+             # Get the conclusion (status) of the previous run
+             PREVIOUS_STATUS=$(echo "$PREVIOUS_RUN" | jq -r '.conclusion')
+
+             echo "Previous Status: $PREVIOUS_STATUS"
