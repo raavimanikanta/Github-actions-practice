@@ -23,7 +23,7 @@ jobs:
            uses: actions/checkout@v1
          - name: 'first-step'
            if: ${{ github.event.inputs.infra_env == 'nonprod' }}
-           run: eho "hello-world"
+           run: echo "hello-world"
         
          - name: 'second-step'
            if: ${{ github.event.inputs.infra_env == 'prod' }}
